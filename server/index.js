@@ -9,7 +9,7 @@ var {getAllFavorites, saveFavorite, deleteFavorite} = require('./database.js');
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../client/dist'));
 
-app.get('/search', (req, res) => {
+app.get('/moviesByGenre', (req, res) => {
     let genreId = req.body.id; //check prop later
     getMovies(genreId).then(data => res.send(data)).catch(err => res.send(err));
 });
