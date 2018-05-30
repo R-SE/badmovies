@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Search from './components/Search.jsx'
 import Movies from './components/Movies.jsx'
+import axios from 'axios';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,22 +14,19 @@ class App extends React.Component {
       showFaves: false,
     };
     
-    // you might have to do something important here!
-  }
-
-  getGenres() {
-    axios.get('/genres')
-    .then(data => console.log(data))
-    .catch(err => console.log(err))
+    this.getMovies = this.getMovies.bind(this);
+    this.getFaves = this.getFaves.bind(this);
+    // this.saveFave = this.saveFave.bind(this);
+    // this.deleteFave = this.deleteFave.bind(this);
   }
 
   getMovies(movieId) {
     axios.get('/moviesByGenre')
-    .then(data => console.log(data))
+    .then(data => {console.log(data); this.setState({movies: data.data})})
     .catch(err => console.log(err))
   }
 
-  getFaves(movie) {
+  getFaves() {
     axios.get('/faves')
     .then(data => console.log(data))
     .catch(err => console.log(err))
@@ -58,7 +56,7 @@ class App extends React.Component {
         <header className="navbar"><h1>Bad Movies</h1></header> 
         
         <div className="main">
-          <Search swapFavorites={this.swapFavorites} showFaves={this.state.showFaves}/>
+          <Search swapFavorites={this.swapFavorites} showFaves={this.state.showFaves} getMovies={this.getMovies} />
           <Movies movies={this.state.showFaves ? this.state.favorites : this.state.movies} showFaves={this.state.showFaves}/>
         </div>
       </div>

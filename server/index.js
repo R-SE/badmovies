@@ -15,7 +15,7 @@ app.get('/moviesByGenre', (req, res) => {
 });
 
 app.get('/genres', (req, res) => {
-    getGenres.then(data => res.send(data)).catch(err => res.send(err));
+    getGenres().then(data => res.send(data)).catch(err => res.send(err));
 });
 
 app.get('/faves', (req, res) => {
