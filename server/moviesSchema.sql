@@ -2,8 +2,8 @@ DROP DATABASE IF EXISTS badmovies;
 CREATE DATABASE badmovies;
 USE badmovies;
 
-CREATE TABLE faves (
-    id INT(20) NOT NULL AUTOINCREMENT PRIMARY KEY,
+CREATE TABLE favorites (
+    id INT(20) NOT NULL PRIMARY KEY,
     title varchar(200),
     vote_average INT(20),
     vote_count INT(20),
