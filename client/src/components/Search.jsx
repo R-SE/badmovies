@@ -17,11 +17,9 @@ class Search extends React.Component {
   getGenres() {
     axios.get('/genres')
     .then(data => this.setState({genres: data.data}))
-    // .then(data => console.log(this.state))
     .catch(err => console.log(err))
   }
   updateGenre(e) {
-    // console.log(e.target.value);
     this.setState({currentId: e.target.value});
   }
   render() {

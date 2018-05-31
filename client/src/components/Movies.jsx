@@ -3,10 +3,11 @@ import React from 'react';
 class Movies extends React.Component {
   constructor(props) {
     super(props)
-
-
   }
-
+  handleClick(movie) {
+    if (this.props.showFaves) this.props.deleteFave(movie.id);
+    else this.props.saveFave(movie);
+  }
   // Make an onClick for each list item. If the movies shown is the search results, 
   // onClick add it to the database (do it in the main app, and pass down the function)
 
@@ -14,13 +15,12 @@ class Movies extends React.Component {
   // You can tell which list is currently being rendered based on whether the prop "showFaves" is false (search results) or true (fave list) (within index.jsx)
 
   render() {
-    console.log(this.props);
-    // console.log(movies[0]);
+    console.log('props of movies', this.props);  
     let {movies} = this.props;
     return (
     <ul className="movies">
       {movies.map(movie => (
-          <li key={movie.id} className="movie_item">
+          <li key={movie.id} className="movie_item" onClick={() => this.handleClick(movie)}>
             <img src={'https://image.tmdb.org/t/p/w300_and_h450_bestv2/' + movie.poster_path} />
             <div className="movie_description">
               <h2>{movie.title}</h2>
