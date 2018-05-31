@@ -29,7 +29,6 @@ app.get('/faves', (req, res) => {
 
 app.post('/faves', (req, res) => {
     let movie = req.body.movie;
-    // console.log('faves route post', movie)
     saveFavorite(movie, (err, data) => {
         if (err) res.send('already saved')
         else res.status(200).send(data);
@@ -37,7 +36,6 @@ app.post('/faves', (req, res) => {
 });
 
 app.delete('/faves', (req, res) => {
-    // console.log('deleting', req.query, req.data, req.body, req);
     let movieId = req.body.id;
     console.log(movieId);
     deleteFavorite(movieId, (err, data) => {

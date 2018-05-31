@@ -52,6 +52,3 @@ let dummyData = { vote_count: 214,
     adult: false,
     overview: 'When his son dies while hiking the famed Camino de Santiago pilgrimage route in the Pyrenees, Tom flies to France to claim the remains. Looking for insights into his estranged child’s life, he decides to complete the 500-mile mountain trek to Spain. Tom soon joins up with other travelers and realizes they’re all searching for something.',
     release_date: '2010-09-10' }
-
-// saveFavorite(dummyData, (err, data) => console.log(err, data));
-// deleteFavorite(59468, (err, data) => console.log(err, data));
