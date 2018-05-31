@@ -16,7 +16,7 @@ class Search extends React.Component {
   getGenres() {
     axios.get('/genres')
     .then(data => this.setState({genres: data.data}))
-    .then(data => console.log(this.state))
+    // .then(data => console.log(this.state))
     .catch(err => console.log(err))
   }
   render() {
