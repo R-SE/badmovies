@@ -9,6 +9,7 @@ class Search extends React.Component {
       currentId: 12,
     };
     this.getGenres = this.getGenres.bind(this);
+    this.updateGenre = this.updateGenre.bind(this);
   }
   componentDidMount() {
     this.getGenres();
@@ -19,14 +20,18 @@ class Search extends React.Component {
     // .then(data => console.log(this.state))
     .catch(err => console.log(err))
   }
+  updateGenre(e) {
+    // console.log(e.target.value);
+    this.setState({currentId: e.target.value});
+  }
   render() {
     return (
       <div className="search">
         <button onClick={() => {this.props.swapFavorites()}}>{this.props.showFaves ? "Show Results" : "Show Favorites"}</button>
         <br/><br/>
 
-        <select>
-          {this.state.genres.map(genre => <option key={genre.id} value={genre.name}>{genre.name}</option>)}
+        <select onChange={e => this.updateGenre(e)}>
+          {this.state.genres.map(genre => <option key={genre.id} value={genre.id}>{genre.name}</option>)}
         </select>
         <br/><br/>
 

@@ -34,10 +34,12 @@ class App extends React.Component {
     // this.saveFave = this.saveFave.bind(this);
     // this.deleteFave = this.deleteFave.bind(this);
   }
-
-  getMovies(movieId) {
-    axios.get('/moviesByGenre')
-    .then(data => {console.log(data); this.setState({movies: data.data})})
+  componentDidMount() {
+    this.getMovies(12);
+  }
+  getMovies(genreId) {
+    axios.get('/moviesByGenre', {params: {genreId}})
+    .then(data => {console.log('got movies', data); this.setState({movies: data.data})})
     .catch(err => console.log(err))
   }
   getFaves() {
@@ -66,7 +68,7 @@ class App extends React.Component {
         <header className="navbar"><h1>Bad Movies</h1></header> 
         
         <div className="main">
-          <Search swapFavorites={this.swapFavorites} showFaves={this.state.showFaves} getMovies={this.getMovies} />
+          <Search swapFavorites={this.swapFavorites} showFaves={this.state.showFaves} getMovies={this.getMovies} getMovies={this.getMovies}/>
           <Movies movies={this.state.showFaves ? this.state.favorites : this.state.movies} showFaves={this.state.showFaves}/>
         </div>
       </div>

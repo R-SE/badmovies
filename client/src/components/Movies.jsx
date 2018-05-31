@@ -15,8 +15,8 @@ class Movies extends React.Component {
 
   render() {
     console.log(this.props);
+    // console.log(movies[0]);
     let {movies} = this.props;
-    console.log(movies[0]);
     return (
     <ul className="movies">
       {movies.map(movie => (

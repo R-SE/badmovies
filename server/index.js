@@ -10,8 +10,10 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../client/dist'));
 
 app.get('/moviesByGenre', (req, res) => {
-    let genreId = req.body.id; //check prop later
-    getMovies(genreId).then(data => res.send(data)).catch(err => res.send(err));
+    let genreId = req.query.genreId;
+    getMovies(genreId)
+    .then(data => res.send(data))
+    .catch(err => res.send(err));
 });
 
 app.get('/genres', (req, res) => {
