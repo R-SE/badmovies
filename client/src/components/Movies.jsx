@@ -5,6 +5,7 @@ class Movies extends React.Component {
     super(props)
   }
   handleClick(movie) {
+    console.log('handling click, with showFaves as', this.props.showFaves)
     if (this.props.showFaves) this.props.deleteFave(movie.id);
     else this.props.saveFave(movie);
   }

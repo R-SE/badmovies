@@ -10,6 +10,7 @@ class Search extends React.Component {
     };
     this.getGenres = this.getGenres.bind(this);
     this.updateGenre = this.updateGenre.bind(this);
+    console.log('props of search', this.props);
   }
   componentDidMount() {
     this.getGenres();

@@ -21,16 +21,17 @@ app.get('/genres', (req, res) => {
 });
 
 app.get('/faves', (req, res) => {
-    getAllFavorites()
-    .then(data => res.send(data))
-    .catch(err => res.send(err));
+    getAllFavorites((err, data) => {
+        if (err) res.send(err)
+        else res.send(data);
+    })
 });
 
 app.post('/faves', (req, res) => {
     let movie = req.body.movie;
     console.log('faves route post', movie)
     saveFavorite(movie, (err, data) => {
-        if (err) res.status(404).send(err)
+        if (err) res.send('already saved')
         else res.status(200).send(data);
     });
 });

@@ -26,16 +26,19 @@ class App extends React.Component {
   	this.state = {
       movies: [dummyData],
       favorites: [dummyData],
-      showFaves: false,
+      showFaves: false
     };
     
     this.getMovies = this.getMovies.bind(this);
     this.getFaves = this.getFaves.bind(this);
-    // this.saveFave = this.saveFave.bind(this);
+    this.saveFave = this.saveFave.bind(this);
     this.deleteFave = this.deleteFave.bind(this);
+    this.swapFavorites = this.swapFavorites.bind(this);
+    console.log('state of app', this.state)
   }
   componentDidMount() {
     this.getMovies(12);
+    this.getFaves();
   }
   getMovies(genreId) {
     axios.get('/moviesByGenre', {params: {genreId}})
@@ -44,17 +47,20 @@ class App extends React.Component {
   }
   getFaves() {
     axios.get('/faves')
-    .then(data => console.log(data))
+    .then(data => this.setState({favorites: data.data}))
+    // .then(data => console.log(data))
     .catch(err => console.log(err))
   }
   saveFave(movie) {
     axios.post('/faves', {movie})
     .then(data => console.log(data))
+    .then(() => this.getFaves())
     .catch(err => console.log(err))
   }
   deleteFave(id) {
     axios.delete('/faves')
     .then(data => console.log(data))
+    .then(() => this.getFaves())
     .catch(err => console.log(err))
   }
   swapFavorites() {
