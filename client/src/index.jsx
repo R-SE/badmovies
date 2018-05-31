@@ -53,12 +53,12 @@ class App extends React.Component {
   }
   saveFave(movie) {
     axios.post('/faves', {movie})
-    .then(data => console.log(data))
+    // .then(data => console.log(data))
     .then(() => this.getFaves())
     .catch(err => console.log(err))
   }
   deleteFave(id) {
-    axios.delete('/faves')
+    axios.delete('/faves', {data: {id}})
     .then(data => console.log(data))
     .then(() => this.getFaves())
     .catch(err => console.log(err))

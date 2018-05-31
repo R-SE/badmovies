@@ -21,8 +21,8 @@ const saveFavorite = (movie, callback) => {
   });
 };
 
-const deleteFavorite = (id, callback) => {
-  let query = 'DELETE FROM favorites WHERE id=id'
+const deleteFavorite = (movieId, callback) => {
+  let query = `DELETE FROM favorites WHERE id=${movieId}`
   con.query(query, (err, data) => {
     if (err) callback(err);
     else callback(null, data);
